@@ -20,8 +20,17 @@ spring:
           - id: author-service-health
             uri: lb://AUTHORSERVICE
             predicates:
-              - Path=/authors/health/**
+              - Path=/authors/health
               - Method=GET
+            filters:
+              - RewritePath=/authors/health, /health
+          - id: book-service-health
+            uri: lb://BOOKSERVICE
+            predicates:
+              - Path=/books/health
+              - Method=GET
+            filters:
+              - RewritePath=/books/health, /health
 eureka:
   client:
     service-url:
