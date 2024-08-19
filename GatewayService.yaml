@@ -5,6 +5,10 @@ spring:
     name: GatewayService
   cloud:
     gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
       mvc:
         routes:
           - id: author-service
@@ -38,3 +42,7 @@ eureka:
 logging:
   pattern:
     console: '%msg%n'
+  org:
+    springframework:
+      cloud:
+        gateway: TRACE
