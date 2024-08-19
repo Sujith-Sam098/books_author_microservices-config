@@ -17,6 +17,11 @@ spring:
             predicates:
               - Path=/books/**
               - Method=GET
+          - id: author-service-health
+            uri: lb://AUTHORSERVICE
+            predicates:
+              - Path=/authors/health/**
+              - Method=GET
 eureka:
   client:
     service-url:
