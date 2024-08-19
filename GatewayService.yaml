@@ -3,10 +3,24 @@ server:
 spring:
   application:
     name: GatewayService
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: author-service
+            uri: lb://AUTHORSERVICE
+            predicates:
+              - Path=/authors/**
+              - Method=GET
+          - id: book-service
+            uri: lb://BOOKSERVICE
+            predicates:
+              - Path=/books/**
+              - Method=GET
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 logging:
   pattern:
-    console: "%msg%n"
+    console: '%msg%n'
